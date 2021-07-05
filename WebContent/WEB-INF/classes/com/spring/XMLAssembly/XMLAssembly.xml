@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- set依赖注入 -->
+	<bean id="user1" class="com.spring.XMLAssembly.User">
+		<property name="userName" value="张三"></property>
+		<property name="password" value="123456"></property>
+		<property name="list">
+			<list>
+				<value>"XMLAssemblySetterInjectionValue1"</value>
+				<value>"XMLAssemblySetterInjectionValue2"</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 构造器注入 -->
+	<bean id="user2" class="com.spring.XMLAssembly.User">
+		<constructor-arg index="0" type="String" value="李四"></constructor-arg>
+		<constructor-arg index="1" type="Integer" value="123456"></constructor-arg>
+		<constructor-arg index="2">
+			<list>
+				<value>"XMLAssemblyConstructorInjectionValue1"</value>
+				<value>"XMLAssemblyConstructorInjectionValue2"</value>
+			</list>
+		</constructor-arg>
+	</bean>
+</beans>

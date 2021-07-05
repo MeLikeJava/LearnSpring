@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="userDao" class="com.spring.ioc.UserDaoImpl"></bean>
+	<bean id="userService" class="com.spring.ioc.UserServiceImpl" scope="singleton">
+		<property name="userDao" ref="userDao"></property>
+		<constructor-arg index="0" type="String" >
+			<value>李四</value>
+		</constructor-arg>
+	</bean>
+	<!-- 1、spring构造器实例化 -->
+	<bean id="noParameterConstructor" class="com.spring.instance.constuctor.NoParameterConstructor"></bean>
+	<!-- 2、静态工厂方式实例化 -->
+	<bean id="staticFactory" class="com.spring.instance.static_factory.CreateBeanFactory" factory-method="createBean"></bean>
+	<!-- 3、实例工厂方式实例化 -->
+	<bean id="instanceFactory" class="com.spring.instance.instanceFactory.CreateBeanFactory"></bean>
+	<bean id="instanceBean" factory-bean="instanceFactory" factory-method="createBean"></bean>
+	<!-- 
+		bean的scope属性为singleton 
+		当scope="singleton"时，无论这个bean被引用(获取)多少次都将指向同一个地址也就是同一个对象
+		可省略不写，因为此作用域为spring的默认作用域 
+	-->
+	<bean id="singletonBean" class="com.spring.bean.scope.Scope" scope="singleton"></bean>
+	<!-- 
+		bean的scope属性为prototype
+		当scope="prototype"时，效果：每一次被引用(获取)的bean都被重新创建，也就是每当被引用时存储在内存中的位置都不同，
+		场景：用在需要保持会话或一个实例被持续操作的时候
+	 -->
+	<bean id="prototypeBean" class="com.spring.bean.scope.Scope" scope="prototype"></bean>
+</beans>
