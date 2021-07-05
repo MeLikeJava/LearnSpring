@@ -2,6 +2,7 @@ package com.spring.aop.jdkDynamicProxyBilibili.reflect;
 
 import java.lang.reflect.Method;
 
+
 public class Test {
 
 	/**
@@ -14,6 +15,7 @@ public class Test {
 		//正常逻辑调用方法-->实例化对象-->调用方法-->执行方法
 		IHelloService s = new HelloServiceImpl();
 		s.sayHello("new实例化");
+		s.ask("new实例化", 20);
 		
 		//利用反射机制调用方法
 		IHelloService target = new HelloServiceImpl();
@@ -24,7 +26,7 @@ public class Test {
 		 * public Object invoke(Object obj, Object... args){}
 		 * 参数：
 		 * 		1、Object obj,表示对象的，要执行这个对象的方法
-		 * 		2、Object... args,方法执行时的参数值
+		 * 		2、Object... args,方法执行时的参数值,可以是按顺序排列书写，也可以直接使用对象
 		 * 返回值Object：方法执行后的返回值
 		 * 通过Method对象可以执行sayHello()的调用
 		 * */
@@ -33,5 +35,10 @@ public class Test {
 		String returnV = (String) ask.invoke(target,"多参数加返回值",18);
 		System.out.println(returnV);
 	}
-
+	@org.junit.Test
+	public void test(){
+		System.out.println("getClass()-->输出："+new Test().getClass());
+		System.out.println("this.getClass()-->输出："+this.getClass());
+		System.out.println(".class-->输出："+Test.class);
+	}
 }
