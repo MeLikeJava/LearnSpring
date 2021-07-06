@@ -7,7 +7,7 @@ public class Client {
 		IUsbSell targetObj = new UsbKingFactory();
 		JdkDynamicProxy proxy = new JdkDynamicProxy();
 		IUsbSell proxyObj = (IUsbSell)proxy.createProxy(targetObj);
-		float price = proxyObj.sell(50);
+		float price = proxyObj.sell(5000);
 		System.out.println("×Ü¼Û£º"+price);
 	}
 
