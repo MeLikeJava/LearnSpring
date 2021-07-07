@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+     <!-- 目标类 -->
+	<bean id="userDao" class="com.spring.aop.XMLAssembly.UserDaoImpl"></bean>
+	<!-- 声明切面类 -->
+	<bean id="myAspect" class="com.spring.aop.XMLAssembly.MyAspect"></bean>
+	<!-- 创建目标类代理对象 -->
+	<bean id="proxyUserDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 注入目标对象 -->
+		<property name="target" ref="userDao"></property>	
+		<!-- 指定代理对象需要实现的接口 -->
+		<property name="proxyInterfaces" value="com.spring.aop.XMLAssembly.IUserDao"></property>
+		<!-- 指定需要织入的通知 -->
+		<property name="interceptorNames" value="myAspect"></property>
+		<!-- 设置代理方式 -->
+		<property name="proxyTargetClass" value="true"></property>
+	</bean>
+</beans>
